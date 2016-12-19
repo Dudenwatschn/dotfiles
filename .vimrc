@@ -1,17 +1,23 @@
+" Alternative to exit to normal mode
 imap jj <ESC>
-vmap jj <ESC> 
 
-" Unmap the arrow keys
+" Unmap the arrow keys / switch position of lines with Up and Down (in normal mode)
 no <down> ddp
 no <left> <Nop>
 no <right> <Nop>
 no <up> ddkP
+
+vno <down> <Nop>
+vno <left> <Nop>
+vno <right> <Nop>
+vno <up> <Nop>
 
 ino <down> <Nop>
 ino <left> <Nop>
 ino <right> <Nop>
 ino <up> <Nop>
 
+" Option to add second quote or parenthase
 imap <leader>' ''<ESC>i
 imap <leader>" ""<ESC>i
 imap <leader>( ()<ESC>i
