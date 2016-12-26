@@ -27,5 +27,8 @@ imap <leader>[ []<ESC>i
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%81v', 100)
 
+set number  " Show Line-Numbers
+set showcmd " Show commands in bottom bar
+
 " Spaces instead of tabs / Tabwidth 2:
 set tabstop=2 shiftwidth=2 expandtab
