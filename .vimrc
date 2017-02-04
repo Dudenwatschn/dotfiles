@@ -34,6 +34,11 @@ call plug#end()
 runtime plugin/dragvisuals.vim
 " --- Plugin Inclusion [End] ---
 
+" --- Make settings [Begin] ---
+au FileType c set makeprg=gcc\ %
+au FileType cpp set makeprg=g++\ %
+" --- Make settings [End] ---
+
 " --- Plugin Settings [Begin] ---
 " NerdTree options
 "autocmd vimenter * NERDTree " Start NERDTree automatically with vim
