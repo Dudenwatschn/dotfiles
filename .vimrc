@@ -40,6 +40,10 @@ au FileType cpp set makeprg=g++\ %
 " --- Make settings [End] ---
 
 " --- Plugin Settings [Begin] ---
+" Vim airline settings
+set laststatus=2 " Always show statusline
+let g:airline_powerline_fonts=1 " Use Powerline Fonts
+
 " NerdTree options
 "autocmd vimenter * NERDTree " Start NERDTree automatically with vim
 map <C-n> :NERDTreeToggle<CR>
