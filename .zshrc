@@ -52,11 +52,15 @@ ZSH_THEME="agnoster"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
+plugins=(zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # User configuration
 
+bindkey '^f' vi-forward-blank-word
+# ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=cyan"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
