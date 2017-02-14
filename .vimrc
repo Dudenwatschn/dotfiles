@@ -1,3 +1,12 @@
+" Some general overrides
+set nocompatible
+syntax enable
+set path+=**
+set wildmenu
+" adds ':MakeTags' command (tries to generate c tags from current dir)
+" Lookup on how to use properly ^[ ^]
+command! MakeTags !ctags -R .
+
 " Remap leader
 let mapleader = ","
 " Remap v and Ctrl-V
@@ -67,6 +76,11 @@ vmap <leader>L  :call ListTrans_toggle_format('visual')<CR>
 " Alternative to exit to normal mode
 imap jj <ESC>
 
+" Setting for vim-tabs (not working with every terminal)
+" in zsh you need to include 'stty -ixon' to your .zshrc?
+noremap <C-Tab> gt<CR>
+noremap <C-S-Tab> gT<CR>
+noremap <C-T> :tabnew<CR>
 " Unmap the arrow keys / switch position of lines with Up and Down (in normal mode)
 ino <down> <Nop>
 ino <left> <Nop>
@@ -78,7 +92,7 @@ imap <leader>' ''<ESC>i
 imap <leader>" ""<ESC>i
 imap <leader>( ()<ESC>i
 imap <leader>[ []<ESC>i
-
+imap <leader>< <><ESC>i
 " Make the 81st column stand out
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%81v', 100)
