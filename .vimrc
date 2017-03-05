@@ -3,6 +3,8 @@ set nocompatible
 syntax enable
 set path+=**
 set wildmenu
+" Allow execution of a second .vimrc file from current dir
+set exrc
 " adds ':MakeTags' command (tries to generate c tags from current dir)
 " Lookup on how to use properly ^[ ^]
 command! MakeTags !ctags -R .
@@ -24,6 +26,12 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter' 
 
+Plug 'Valloric/YouCompleteMe'
+" Project plugins
+Plug 'LucHermitte/lh-vim-lib'
+Plug 'LucHermitte/local_vimrc'
+Plug 'LucHermitte/vim-build-tools-wrapper'
+
 Plug 'WolfgangMehner/c-support' " Plugins below still need to be checked (excluding CTRL-P)
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
@@ -32,7 +40,7 @@ Plug 'honza/vim-snippets'
 
 Plug 'honza/vim-snippets'
 
-Plug 'rkulla/pydiction.git'
+"Plug 'rkulla/pydiction.git'
 
 " Fuzzy filesearch
 Plug 'kien/ctrlp.vim'
@@ -43,16 +51,21 @@ call plug#end()
 runtime plugin/dragvisuals.vim
 " --- Plugin Inclusion [End] ---
 
-" --- Make settings [Begin] ---
+" --- Language settings [Begin] ---
 au FileType c set makeprg=gcc\ %
 au FileType cpp set makeprg=g++\ %
-" --- Make settings [End] ---
+au FileType cpp command Run !./a.out
+
+" Open cppman when pressing Ctrl-K
+command! -nargs=+ Cppman silent! call system("tmux split-window -v cppman " . expand(<q-args>))
+autocmd FileType cpp nnoremap <silent><buffer> K <Esc>:Cppman <cword><CR>
+" --- Language settings [End] ---
 
 " --- Plugin Settings [Begin] ---
 " Vim airline settings
 set laststatus=2 " Always show statusline
 let g:airline_powerline_fonts=1 " Use Powerline Fonts
-
+let g:ycm_global_ycm_extra_conf = 'path to .ycm_extra_conf.py'
 " NerdTree options
 "autocmd vimenter * NERDTree " Start NERDTree automatically with vim
 map <C-n> :NERDTreeToggle<CR>
@@ -105,3 +118,4 @@ set list
 
 " Spaces instead of tabs / Tabwidth 2:
 set tabstop=2 shiftwidth=2 expandtab
+set secure

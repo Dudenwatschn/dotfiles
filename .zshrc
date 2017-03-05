@@ -7,8 +7,12 @@
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME='agnoster'
 
+export TERM='xterm-256color'
+setopt RM_STAR_WAIT # rm * does a sanity check
+setopt interactivecomments
+setopt CORRECT # Spell Correction
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -88,4 +92,4 @@ export EDITOR='vim'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias vi="vim"
+alias vi='vim'
