@@ -93,3 +93,6 @@ export EDITOR='vim'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias vi='vim'
+
+# added by Anaconda3 4.3.1 installer
+export PATH="/home/alexander/anaconda3/bin:$PATH"
