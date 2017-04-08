@@ -95,4 +95,4 @@ export EDITOR='vim'
 alias vi='vim'
 
 # added by Anaconda3 4.3.1 installer
-export PATH="/home/alexander/anaconda3/bin:$PATH"
+#export PATH="/home/alexander/anaconda3/bin:$PATH"

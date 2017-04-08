@@ -1,5 +1,6 @@
 " Some general overrides
 set nocompatible
+set hidden
 syntax enable
 set path+=**
 set wildmenu
@@ -26,6 +27,9 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter' 
 
+Plug 'tpope/vim-surround' " cs (change surrounding) from to; cst (change surrounding to); ds (delete surr); yss) surround line
+Plug 'vim-ctrlspace/vim-ctrlspace'
+
 Plug 'Valloric/YouCompleteMe'
 " Project plugins
 Plug 'LucHermitte/lh-vim-lib'
@@ -38,10 +42,6 @@ Plug 'tomtom/tlib_vim'
 Plug 'garbas/vim-snipmate'
 Plug 'honza/vim-snippets'
 
-Plug 'honza/vim-snippets'
-
-"Plug 'rkulla/pydiction.git'
-
 " Fuzzy filesearch
 Plug 'kien/ctrlp.vim'
 
@@ -51,10 +51,16 @@ call plug#end()
 runtime plugin/dragvisuals.vim
 " --- Plugin Inclusion [End] ---
 
+" --- CtrlSpace Settings [Begin] ---
+set showtabline=0
+let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
+let g:CtrlSpaceSaveWorkspaceOnExit = 1
+" --- CtrlSpace Settings [End] ---
+
 " --- Language settings [Begin] ---
 au FileType c set makeprg=gcc\ %
-au FileType cpp set makeprg=g++\ %
-au FileType cpp command Run !./a.out
+" au FileType cpp set makeprg=g++\ %
+" au FileType cpp command Run !./a.out
 
 " Open cppman when pressing Ctrl-K
 command! -nargs=+ Cppman silent! call system("tmux split-window -v cppman " . expand(<q-args>))
@@ -65,6 +71,7 @@ autocmd FileType cpp nnoremap <silent><buffer> K <Esc>:Cppman <cword><CR>
 " Vim airline settings
 set laststatus=2 " Always show statusline
 let g:airline_powerline_fonts=1 " Use Powerline Fonts
+let g:ycm_path_to_python_interpreter = '/usr/bin/python'
 let g:ycm_global_ycm_extra_conf = 'path to .ycm_extra_conf.py'
 " NerdTree options
 "autocmd vimenter * NERDTree " Start NERDTree automatically with vim
