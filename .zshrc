@@ -57,6 +57,7 @@ setopt CORRECT # Spell Correction
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 plugins=(zsh-autosuggestions)
+plugins=(wd) # Warp directory
 
 source $ZSH/oh-my-zsh.sh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
