@@ -1,7 +1,9 @@
 " Some general overrides
 set nocompatible
+filetype plugin on
 set hidden
-syntax enable
+" syntax enable " Disabled for vimwiki (might also work with enable instead of on)
+syntax on
 set path+=**
 set wildmenu
 " Allow execution of a second .vimrc file from current dir
@@ -26,6 +28,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter' 
+Plug 'sjl/gundo.vim', { 'dir': '~/.vim/plugged/gundo'}
+Plug 'vimwiki/vimwiki'
 
 Plug 'tpope/vim-surround' " cs (change surrounding) from to; cst (change surrounding to); ds (delete surr); yss) surround line
 Plug 'vim-ctrlspace/vim-ctrlspace'
@@ -56,6 +60,11 @@ set showtabline=0
 let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
 let g:CtrlSpaceSaveWorkspaceOnExit = 1
 " --- CtrlSpace Settings [End] ---
+
+" --- Gundo Settings [Begin] ---
+let g:gundo_prefer_python3 = 1
+nnoremap gu :GundoToggle<CR>
+" --- Gundo Settings [End] ---
 
 " --- Language settings [Begin] ---
 au FileType c set makeprg=gcc\ %
