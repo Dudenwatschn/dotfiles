@@ -13,6 +13,7 @@ export TERM='xterm-256color'
 setopt RM_STAR_WAIT # rm * does a sanity check
 setopt interactivecomments
 setopt CORRECT # Spell Correction
+setopt correctall # Spell Correction for args
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -79,6 +80,16 @@ bindkey '^f' vi-forward-blank-word
 # fi
 export EDITOR='vim'
 
+function tmuxopen()
+{
+  tmux attach -t $1
+}
+
+function tmuxkill()
+{
+  tmux kill-session -t $1
+}
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -94,6 +105,13 @@ export EDITOR='vim'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias vi='vim'
+alias emacs='vim'
 
+setopt auto_cd # When typing 'foo' (and it is not a command), perform cd instead
+setopt append_history # Allow multiple terminal session to append to one zsh-history
+setopt extended_history # save timestamp and duration of command
+setopt inc_append_history # Add commands as they are typed, don't wait for shell exit
+setopt hist_expire_dups_first # when trimming history, lose oldest duplicates first
+setopt hist_reduce_blanks # Remove extra blanks from commandline history
 # added by Anaconda3 4.3.1 installer
 #export PATH="/home/alexander/anaconda3/bin:$PATH"

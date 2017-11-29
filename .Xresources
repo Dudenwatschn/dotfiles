@@ -1,0 +1,15 @@
+URxvt.url-launcher: /usr/bin/firefox
+URxvt*fading: 30
+URxvt*background: #101218
+URxvt*foreground: #d1d4e0
+URxvt*cursorColor: #d1d4e0
+URxvt*scrollColor: #d1d4e0
+URxvt*highlightColor: #1f222d
+URxvt*highlightTextColor: #C0C5CE
+
+URxvt*font: xft:Fira Mono for Powerline:size=10
+URxvt.scrollBar: false
+
+URxvt.resize-font.smaller: C--
+URxvt.resize-font.bigger: C-+
+

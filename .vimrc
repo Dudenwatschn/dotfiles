@@ -80,6 +80,7 @@ autocmd FileType cpp nnoremap <silent><buffer> K <Esc>:Cppman <cword><CR>
 " Vim airline settings
 set laststatus=2 " Always show statusline
 let g:airline_powerline_fonts=1 " Use Powerline Fonts
+" YouCompleteMe settings
 let g:ycm_path_to_python_interpreter = '/usr/bin/python'
 let g:ycm_global_ycm_extra_conf = 'path to .ycm_extra_conf.py'
 " NerdTree options
@@ -128,7 +129,7 @@ call matchadd('ColorColumn', '\%81v', 100)
 
 set number  " Show Line-Numbers
 set showcmd " Show commands in bottom bar
-set listchars=tab:>~
+set listchars=tab:>~,trail:•
 ",<CR>
 set list
 
