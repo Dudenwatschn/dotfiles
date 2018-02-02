@@ -1,3 +1,5 @@
+xterm-256color
+
 URxvt.url-launcher: /usr/bin/firefox
 URxvt*fading: 30
 URxvt*background: #101218

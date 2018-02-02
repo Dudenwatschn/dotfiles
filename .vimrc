@@ -1,6 +1,7 @@
 " Some general overrides
 set nocompatible
 filetype plugin on
+"set t_Co=256
 set hidden
 " syntax enable " Disabled for vimwiki (might also work with enable instead of on)
 syntax on
@@ -19,7 +20,18 @@ nnoremap    v   <C-V>
 nnoremap <C-V>     v
 vnoremap    v   <C-V>
 vnoremap <C-V>     v
-" --- Plugin Inclusion [Begin] ---
+
+" --- Nvim Settings [Begin --- {{{1
+if has('nvim')
+  tnoremap <Esc> <C-\><C-n>   " Esc escapes terminal mode
+  "g:loaded_python_provider=1  " Enable Python2 support
+  "g:loaded_python3_provider=1 " Enable Python3 support
+  colorscheme elflord "'ron' is also a similar theme
+  let g:CtrlSpaceDefaultMappingKey = "<C-space> " " Fix CtrlSpace hotkey.
+endif
+" --- Nvim Settings [Begin --- }}}1
+
+" --- Plugin Inclusion [Begin] --- {{{
 " Specify dir for plugins
 call plug#begin('~/.vim/plugged')
 
@@ -30,6 +42,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter' 
 Plug 'sjl/gundo.vim', { 'dir': '~/.vim/plugged/gundo'}
 Plug 'vimwiki/vimwiki'
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 
 Plug 'tpope/vim-surround' " cs (change surrounding) from to; cst (change surrounding to); ds (delete surr); yss) surround line
 Plug 'vim-ctrlspace/vim-ctrlspace'
@@ -40,7 +53,7 @@ Plug 'LucHermitte/lh-vim-lib'
 Plug 'LucHermitte/local_vimrc'
 Plug 'LucHermitte/vim-build-tools-wrapper'
 
-Plug 'WolfgangMehner/c-support' " Plugins below still need to be checked (excluding CTRL-P)
+Plug 'WolfgangMehner/c-support', {'for': ['c', 'cpp']} " Plugins below still need to be checked (excluding CTRL-P)
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 Plug 'garbas/vim-snipmate'
@@ -53,7 +66,7 @@ Plug 'kien/ctrlp.vim'
 call plug#end()
 
 runtime plugin/dragvisuals.vim
-" --- Plugin Inclusion [End] ---
+" }}} --- Plugin Inclusion [End] ---
 
 " --- CtrlSpace Settings [Begin] ---
 set showtabline=0
@@ -67,6 +80,9 @@ nnoremap gu :GundoToggle<CR>
 " --- Gundo Settings [End] ---
 
 " --- Language settings [Begin] ---
+autocmd FileType vimrc setlocal foldmethod=marker
+" autocmd FileType c setlocal foldmethod=syntax
+" autocmd FileType cpp setlocal foldmethod=syntax
 au FileType c set makeprg=gcc\ %
 " au FileType cpp set makeprg=g++\ %
 " au FileType cpp command Run !./a.out
@@ -86,6 +102,8 @@ let g:ycm_global_ycm_extra_conf = 'path to .ycm_extra_conf.py'
 " NerdTree options
 "autocmd vimenter * NERDTree " Start NERDTree automatically with vim
 map <C-n> :NERDTreeToggle<CR>
+" Make sure python is active!
+map <C-l> :LLPStartPreview<CR>
 " Close vim if NerdTree is the last open window
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
@@ -128,11 +146,14 @@ highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%81v', 100)
 
 set number  " Show Line-Numbers
+set relativenumber " Relative numbers to cursor
 set showcmd " Show commands in bottom bar
 set listchars=tab:>~,trail:•
 ",<CR>
 set list
+set history=1000
 
 " Spaces instead of tabs / Tabwidth 2:
 set tabstop=2 shiftwidth=2 expandtab
+set shiftround " Tab always indent to next multiple of shiftwidth
 set secure

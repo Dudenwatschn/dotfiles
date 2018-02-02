@@ -78,7 +78,7 @@ bindkey '^f' vi-forward-blank-word
 # else
 #   export EDITOR='mvim'
 # fi
-export EDITOR='vim'
+export EDITOR='nvim'
 
 function tmuxopen()
 {
@@ -104,8 +104,10 @@ function tmuxkill()
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias vim='nvim'
 alias vi='vim'
 alias emacs='vim'
+
 
 setopt auto_cd # When typing 'foo' (and it is not a command), perform cd instead
 setopt append_history # Allow multiple terminal session to append to one zsh-history
