@@ -48,6 +48,7 @@ Plug 'tpope/vim-surround' " cs (change surrounding) from to; cst (change surroun
 Plug 'vim-ctrlspace/vim-ctrlspace'
 
 Plug 'Valloric/YouCompleteMe'
+Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
 " Project plugins
 Plug 'LucHermitte/lh-vim-lib'
 Plug 'LucHermitte/local_vimrc'
@@ -106,6 +107,10 @@ map <C-n> :NERDTreeToggle<CR>
 map <C-l> :LLPStartPreview<CR>
 " Close vim if NerdTree is the last open window
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" C-Support settings
+let g:C_UseTool_cmake    = 'yes'
+let g:C_UseTool_doxygen  = 'yes'
+
 
 " Dragging controls with 'Dragvisuals' plugin
 vmap  <expr>  <LEFT>   DVB_Drag('left')
@@ -141,6 +146,8 @@ imap <leader>" ""<ESC>i
 imap <leader>( ()<ESC>i
 imap <leader>[ []<ESC>i
 imap <leader>< <><ESC>i
+imap <leader>{ {<CR>}<ESC>O
+
 " Make the 81st column stand out
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%81v', 100)
