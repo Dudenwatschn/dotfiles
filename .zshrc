@@ -9,11 +9,12 @@
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME='agnoster'
 
-export TERM='xterm-256color'
+#export TERM='xterm-256color'
+export TERM='rxvt-unicode'
 setopt RM_STAR_WAIT # rm * does a sanity check
 setopt interactivecomments
-setopt CORRECT # Spell Correction
-setopt correctall # Spell Correction for args
+#setopt CORRECT # Spell Correction
+#setopt correctall # Spell Correction for args
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -115,5 +116,3 @@ setopt extended_history # save timestamp and duration of command
 setopt inc_append_history # Add commands as they are typed, don't wait for shell exit
 setopt hist_expire_dups_first # when trimming history, lose oldest duplicates first
 setopt hist_reduce_blanks # Remove extra blanks from commandline history
-# added by Anaconda3 4.3.1 installer
-#export PATH="/home/alexander/anaconda3/bin:$PATH"
