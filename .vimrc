@@ -12,7 +12,6 @@ set exrc
 " adds ':MakeTags' command (tries to generate c tags from current dir)
 " Lookup on how to use properly ^[ ^]
 command! MakeTags !ctags -R .
-
 " Remap leader
 let mapleader = ","
 " Remap v and Ctrl-V
@@ -39,7 +38,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/nerdcommenter' 
+Plug 'scrooloose/nerdcommenter'
 Plug 'sjl/gundo.vim', { 'dir': '~/.vim/plugged/gundo'}
 Plug 'vimwiki/vimwiki'
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
@@ -79,6 +78,9 @@ let g:CtrlSpaceSaveWorkspaceOnExit = 1
 let g:gundo_prefer_python3 = 1
 nnoremap gu :GundoToggle<CR>
 " --- Gundo Settings [End] ---
+
+
+autocmd BufWritePre * %s/\s\+$//e " Remove all trailing whitespaces on save
 
 " --- Language settings [Begin] ---
 autocmd FileType vimrc setlocal foldmethod=marker
