@@ -46,8 +46,8 @@ Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 Plug 'tpope/vim-surround' " cs (change surrounding) from to; cst (change surrounding to); ds (delete surr); yss) surround line
 Plug 'vim-ctrlspace/vim-ctrlspace'
 
-Plug 'Valloric/YouCompleteMe'
-Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
+" Plug 'Valloric/YouCompleteMe'
+" Plug 'rdnetto/YCM-Generator', {'branch': 'stable'}
 " Project plugins
 Plug 'LucHermitte/lh-vim-lib'
 Plug 'LucHermitte/local_vimrc'
@@ -62,6 +62,11 @@ Plug 'honza/vim-snippets'
 " Fuzzy filesearch
 Plug 'kien/ctrlp.vim'
 
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'davidhalter/jedi-vim'"Py autocomplete
+Plug 'fisadev/vim-isort', {'for': 'py'} "Sort python imports
+Plug 'mhinz/vim-signify' " Diff view
+Plug 'tpope/vim-surround'
 " Initialize plugin system
 call plug#end()
 
@@ -79,8 +84,8 @@ let g:gundo_prefer_python3 = 1
 nnoremap gu :GundoToggle<CR>
 " --- Gundo Settings [End] ---
 
-
 autocmd BufWritePre * %s/\s\+$//e " Remove all trailing whitespaces on save
+autocmd BufWritePost ~/.Xresources,~/.Xdefaults !xrdb % " Automatically run xrdb when saving .Xresources or .Xdefaults
 
 " --- Language settings [Begin] ---
 autocmd FileType vimrc setlocal foldmethod=marker
@@ -96,12 +101,60 @@ autocmd FileType cpp nnoremap <silent><buffer> K <Esc>:Cppman <cword><CR>
 " --- Language settings [End] ---
 
 " --- Plugin Settings [Begin] ---
+
+" Syntastic ------------------------------
+
+" show list of errors and warnings on the current file
+nmap <leader>e :Errors<CR>
+" check also when just opened the file
+let g:syntastic_check_on_open = 1
+" don't put icons on the sign column (it hides the vcs status icons of signify)
+let g:syntastic_enable_signs = 0
+" custom icons (enable them if you use a patched font, and enable the previous
+" setting)
+"let g:syntastic_error_symbol = '?'
+"let g:syntastic_warning_symbol = '?'
+"let g:syntastic_style_error_symbol = '?'
+"let g:syntastic_style_warning_symbol = '?'
+
+" Jedi-vim ------------------------------
+
+" All these mappings work only for python code:
+" Go to definition
+let g:jedi#goto_command = ',d'
+" Find ocurrences
+let g:jedi#usages_command = ',o'
+" Find assignments
+let g:jedi#goto_assignments_command = ',a'
+" Go to definition in new tab
+nmap ,D :tab split<CR>:call jedi#goto()<CR>
+
+" Deoplete ------------------------------
+
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#camel_case = 1
+
+" Signify ------------------------------
+
+" this first setting decides in which order try to guess your current vcs
+" UPDATE it to reflect your preferences, it will speed up opening files
+let g:signify_vcs_list = [ 'git', 'hg' ]
+" mappings to jump to changed blocks
+nmap <leader>sn <plug>(signify-next-hunk)
+nmap <leader>sp <plug>(signify-prev-hunk)
+" nicer colors
+highlight DiffAdd           cterm=bold ctermbg=none ctermfg=119
+highlight DiffDelete        cterm=bold ctermbg=none ctermfg=167
+highlight DiffChange        cterm=bold ctermbg=none ctermfg=227
+highlight SignifySignAdd    cterm=bold ctermbg=237  ctermfg=119
+highlight SignifySignDelete cterm=bold ctermbg=237  ctermfg=167
+highlight SignifySignChange cterm=bold ctermbg=237 ctermfg=227
 " Vim airline settings
 set laststatus=2 " Always show statusline
 let g:airline_powerline_fonts=1 " Use Powerline Fonts
 " YouCompleteMe settings
-let g:ycm_path_to_python_interpreter = '/usr/bin/python'
-let g:ycm_global_ycm_extra_conf = 'path to .ycm_extra_conf.py'
+"let g:ycm_path_to_python_interpreter = '/usr/bin/python'
+"let g:ycm_global_ycm_extra_conf = 'path to .ycm_extra_conf.py'
 " NerdTree options
 "autocmd vimenter * NERDTree " Start NERDTree automatically with vim
 map <C-n> :NERDTreeToggle<CR>
@@ -157,8 +210,7 @@ call matchadd('ColorColumn', '\%81v', 100)
 set number  " Show Line-Numbers
 set relativenumber " Relative numbers to cursor
 set showcmd " Show commands in bottom bar
-set listchars=tab:>~,trail:â€¢
-",<CR>
+" set listchars=tab:>~,trail:•
 set list
 set history=1000
 
