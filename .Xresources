@@ -55,19 +55,26 @@ XTerm*faceSize: 11
 Xcursor.theme: xcursor-breeze
 Xcursor.size:                     0
 
-XTerm*background:                 #272827
-XTerm*foreground:                 #fdf6e3
-XTerm*reverseVideo:               on
-XTerm*faceName:                   Terminus:size=11:antialias=true
+!XTerm*background:                 #272827
+!XTerm*foreground:                 #fdf6e3
+!XTerm*reverseVideo:               on
+!XTerm*faceName:                   Terminus:size=11:antialias=true
 XTerm*selectToClipboard:          true
 
-URxvt.font:                       9x15,xft:TerminessTTFNerdFontMono
+
+!*font: xft:Inconsolata-Regular:pixelsize=15:antialias=true:hinting=true
+*.font:                       9x15,TerminessTTFNerdFontMono:pixelsize=15:antialias=true:hinting=true
 
 ! alternative font settings with 'terminus':
 !URxvt.font:      -xos4-terminus-medium-r-normal--16-160-72-72-c-80-iso10646-1
 !URxvt.bold.font: -xos4-terminus-bold-r-normal--16-160-72-72-c-80-iso10646-1
 !! terminus names see end of file!
 
+
+st*background:                 black
+st*color0:                     black
+
+URxvt.font: 9x15,xft:TerminessTTFNerdFontMono
 URxvt.depth:                      32
 URxvt.background:                 [80]#000000
 URxvt*scrollBar:                  false
@@ -77,6 +84,15 @@ URxvt*background:                 black
 URxvt*foreground:                 grey
 URxvt*saveLines:                  5000
 
+
+!URxvt.depth:                      32
+!st.background:      [80] #00000
+!URxvt*scrollBar:                  false
+!URxvt*mouseWheelScrollPage:       false
+!st*cursorBlink:     true
+!st*background:      black
+!st*foreground:                 grey
+!st*saveLines:                  5000
 ! for 'fake' transparency (without Compton) uncomment the following three lines
 ! URxvt*inheritPixmap:            true
 ! URxvt*transparent:              true

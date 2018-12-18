@@ -10,7 +10,8 @@
 ZSH_THEME='agnoster'
 
 #export TERM='xterm-256color'
-export TERM='rxvt-unicode'
+#export TERM='rxvt-unicode'
+export TERM='st-256color'
 setopt RM_STAR_WAIT # rm * does a sanity check
 setopt interactivecomments
 #setopt CORRECT # Spell Correction
@@ -106,7 +107,7 @@ function tmuxkill()
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias vim='nvim'
-alias vi='vim'
+#alias vi='vim'
 alias emacs='vim'
 
 
