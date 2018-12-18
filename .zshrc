@@ -109,6 +109,7 @@ function tmuxkill()
 alias vim='nvim'
 #alias vi='vim'
 alias emacs='vim'
+alias vimrc='vim ~/.vimrc'
 
 
 setopt auto_cd # When typing 'foo' (and it is not a command), perform cd instead
