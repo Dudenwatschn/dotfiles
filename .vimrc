@@ -1,37 +1,35 @@
-" Some general overrides
+" General setup ------------------------------
 set nocompatible
 filetype plugin on
-"set t_Co=256
 set hidden
+" Remap leader
+let mapleader = ","
+
 " syntax enable " Disabled for vimwiki (might also work with enable instead of on)
 syntax on
 set path+=**
 set wildmenu
-" Allow execution of a second .vimrc file from current dir
-set exrc
+set exrc " Allow execution of a second .vimrc file from current dir
+
 " adds ':MakeTags' command (tries to generate c tags from current dir)
 " Lookup on how to use properly ^[ ^]
 command! MakeTags !ctags -R .
-" Remap leader
-let mapleader = ","
+
 " Remap v and Ctrl-V
 nnoremap    v   <C-V>
 nnoremap <C-V>     v
 vnoremap    v   <C-V>
 vnoremap <C-V>     v
 
-" --- Nvim Settings [Begin --- {{{1
+" Nvim-specific settings ------------------------------
 if has('nvim')
   tnoremap <Esc> <C-\><C-n>   " Esc escapes terminal mode
-  "g:loaded_python_provider=1  " Enable Python2 support
-  "g:loaded_python3_provider=1 " Enable Python3 support
   colorscheme elflord "'ron' is also a similar theme
   let g:CtrlSpaceDefaultMappingKey = "<C-space> " " Fix CtrlSpace hotkey.
 endif
-" --- Nvim Settings [Begin --- }}}1
 
-" --- Plugin Inclusion [Begin] --- {{{
-" Specify dir for plugins
+" Plugins ------------------------------
+" Set plugin dir:
 call plug#begin('~/.vim/plugged')
 
 "Load plugins from github
@@ -39,7 +37,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
-Plug 'sjl/gundo.vim', { 'dir': '~/.vim/plugged/gundo'}
+Plug 'sjl/gundo.vim', { 'dir': '~/.vim/plugged/gundo'} "Graphical undo
 Plug 'vimwiki/vimwiki'
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 
@@ -66,44 +64,38 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'davidhalter/jedi-vim'"Py autocomplete
 Plug 'fisadev/vim-isort', {'for': 'py'} "Sort python imports
 Plug 'mhinz/vim-signify' " Diff view
-Plug 'tpope/vim-surround'
 " Initialize plugin system
 call plug#end()
 
 runtime plugin/dragvisuals.vim
-" }}} --- Plugin Inclusion [End] ---
 
-" --- CtrlSpace Settings [Begin] ---
-set showtabline=0
-let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
-let g:CtrlSpaceSaveWorkspaceOnExit = 1
-" --- CtrlSpace Settings [End] ---
-
-" --- Gundo Settings [Begin] ---
-let g:gundo_prefer_python3 = 1
-nnoremap gu :GundoToggle<CR>
-" --- Gundo Settings [End] ---
-
+" OnSave ------------------------------
 autocmd BufWritePre * %s/\s\+$//e " Remove all trailing whitespaces on save
 autocmd BufWritePost ~/.Xresources,~/.Xdefaults !xrdb % " Automatically run xrdb when saving .Xresources or .Xdefaults
 
-" --- Language settings [Begin] ---
+" Language settings ------------------------------
 autocmd FileType vimrc setlocal foldmethod=marker
 " autocmd FileType c setlocal foldmethod=syntax
 " autocmd FileType cpp setlocal foldmethod=syntax
 au FileType c set makeprg=gcc\ %
 " au FileType cpp set makeprg=g++\ %
-" au FileType cpp command Run !./a.out
 
 " Open cppman when pressing Ctrl-K
 command! -nargs=+ Cppman silent! call system("tmux split-window -v cppman " . expand(<q-args>))
 autocmd FileType cpp nnoremap <silent><buffer> K <Esc>:Cppman <cword><CR>
-" --- Language settings [End] ---
 
-" --- Plugin Settings [Begin] ---
+" -------------- Plugin Settings [Begin] --------------
+
+" CtrlSpace ------------------------------
+set showtabline=0
+let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
+let g:CtrlSpaceSaveWorkspaceOnExit = 1
+
+" Gundo ------------------------------
+let g:gundo_prefer_python3 = 1
+nnoremap gu :GundoToggle<CR>
 
 " Syntastic ------------------------------
-
 " show list of errors and warnings on the current file
 nmap <leader>e :Errors<CR>
 " check also when just opened the file
@@ -118,7 +110,6 @@ let g:syntastic_enable_signs = 0
 "let g:syntastic_style_warning_symbol = '?'
 
 " Jedi-vim ------------------------------
-
 " All these mappings work only for python code:
 " Go to definition
 let g:jedi#goto_command = ',d'
@@ -130,12 +121,10 @@ let g:jedi#goto_assignments_command = ',a'
 nmap ,D :tab split<CR>:call jedi#goto()<CR>
 
 " Deoplete ------------------------------
-
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#camel_case = 1
 
 " Signify ------------------------------
-
 " this first setting decides in which order try to guess your current vcs
 " UPDATE it to reflect your preferences, it will speed up opening files
 let g:signify_vcs_list = [ 'git', 'hg' ]
@@ -166,7 +155,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 let g:C_UseTool_cmake    = 'yes'
 let g:C_UseTool_doxygen  = 'yes'
 
-
 " Dragging controls with 'Dragvisuals' plugin
 vmap  <expr>  <LEFT>   DVB_Drag('left')
 vmap  <expr>  <RIGHT>  DVB_Drag('right')
@@ -179,7 +167,8 @@ inoremap <expr>  <C-K>   HUDG_GetDigraph()
 
 nmap <leader>l  :call ListTrans_toggle_format()<CR>
 vmap <leader>L  :call ListTrans_toggle_format('visual')<CR>
-" --- Plugin Settings [End] ---
+
+" -------------- Plugin Settings [End] --------------
 
 " Alternative to exit to normal mode
 imap jj <ESC>
