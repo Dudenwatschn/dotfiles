@@ -6,6 +6,8 @@ Xft.autohint: false
 Xft.hintstyle: hintslight
 Xft.lcdfilter: lcddefault
 
+Xterm*termName: xterm-256color
+
 XTerm*background: #2b2b2b
 XTerm*foreground: #e7e7e7
 XTerm*pointerColor: #16A085
@@ -16,7 +18,7 @@ XTerm*faceSize: 11
 *foreground:                      #657b83
 *fading:                          15
 *fadeColor:                       black
-*cursorColor:                     #16A085
+!*cursorColor:                     #16A085 !This destroys the fish shell
 *pointerColorBackground:          #2B2C2B
 *pointerColorForeground:          #16A085
 

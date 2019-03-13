@@ -1,0 +1,1 @@
+/home/alexander/.local/share/omf/themes/agnoster/fish_prompt.fish

@@ -71,7 +71,8 @@ runtime plugin/dragvisuals.vim
 
 " OnSave ------------------------------
 autocmd BufWritePre * %s/\s\+$//e " Remove all trailing whitespaces on save
-autocmd BufWritePost ~/.Xresources,~/.Xdefaults !xrdb % " Automatically run xrdb when saving .Xresources or .Xdefaults
+autocmd BufWritePost ~/.Xresources,~/.Xdefaults !xrdb %
+" Automatically run xrdb when saving .Xresources or .Xdefaults
 
 " Language settings ------------------------------
 autocmd FileType vimrc setlocal foldmethod=marker
